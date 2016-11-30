@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+</head>
+
+<script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
+<script type="text/javascript" src="node_modules/lodash/lodash.min.js"></script>
+<script type="text/javascript" src="./src/app.js"></script>
+<script type="text/javascript" src="./src/services/CricBuzzService.js"></script>
+<script type="text/javascript" src="./src/services/MatchScoreService.js"></script>
+<script type="text/javascript" src="./src/services/MatchService.js"></script>
+<script type="text/javascript" src="./src/utils/XmlToJsonParser.js"></script>
+
+<body ng-app="CricScore" ng-controller="CricScoreController">
+<div ng-repeat="match in matches">
+  <h1>{{match.mchDesc}} ({{match.type}})</h1>
+  <p>Ground: {{match.grnd}} Time:{{match.startTime}}</p>
+  <h3>{{match.score.battingTeam.name}}</h3>
+  <div ng-repeat="innings in match.score.battingTeam.innings">
+    <h4>{{innings.runs}}/{{innings.wickets}} ({{innings.overs}})</h4>
+  </div>
+  <h3>{{match.score.bowlingTeam.name}}</h3>
+  <div ng-repeat="innings in match.score.bowlingTeam.innings">
+    <h4>{{innings.runs}}/{{innings.wickets}} ({{innings.overs}})</h4>
+  </div>
+</div>
+</body>
+
+
+</html>
